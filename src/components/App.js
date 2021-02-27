@@ -17,6 +17,12 @@ function App() {
   function filterPets() {
     return pets.filter( pet => filters.type === "all" ? true : pet.type === filters.type );
   }
+
+  function adoptPet( petId ) {
+    const updatedPets = [ ...pets ];
+    updatedPets.find( pet => pet.id === petId ).isAdopted = true;
+    setPets( updatedPets );
+  }
   
   useEffect( () => {
     fetchPets().then( setPets )
@@ -33,7 +39,7 @@ function App() {
             <Filters filters={ filters } setFilters={ setFilters } />
           </div>
           <div className="twelve wide column">
-            <PetBrowser petsToDisplay={ filterPets() } />
+            <PetBrowser petsToDisplay={ filterPets() } adoptPet={ adoptPet } />
           </div>
         </div>
       </div>

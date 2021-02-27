@@ -1,6 +1,6 @@
 import React from "react";
 
-function Pet( { type, gender, age, weight, name, isAdopted } ) {
+function Pet( { id, type, gender, age, weight, name, isAdopted, adoptPet } ) {
   return (
     <div className="card">
       <div className="content">
@@ -17,8 +17,10 @@ function Pet( { type, gender, age, weight, name, isAdopted } ) {
         </div>
       </div>
       <div className="extra content">
-        <button className="ui disabled button">Already adopted</button>
-        <button className="ui primary button">Adopt pet</button>
+        {
+        isAdopted ? <button className="ui disabled button">Already adopted</button>
+        : <button className="ui primary button" onClick={ () => adoptPet( id ) }>Adopt pet</button>
+        }
       </div>
     </div>
   );
